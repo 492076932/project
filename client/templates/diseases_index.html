@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>疾病-模块</title>
+    <!-- 引入外部文件 -->
+    <link rel="stylesheet" href="/static/css/diseases_index.css">
+    <script src="/static/js/jquery.min.js"></script>
+<!--    <script src="/static/js/disease.data.js"></script>-->
+<!--    <script src="/static/js/diseases_index.js"></script>-->
+</head>
+
+<body>
+    <header>
+        <!-- 导航栏 -->
+        <nav>
+            <!-- logo -->
+            <h1 class="logo">
+                <a href="#">疾病搜索</a>
+            </h1>
+            <!-- 导航菜单 -->
+            <ul>
+                <li><a href="/index" class="index">首页</a></li>
+                <li><a href="/diseases" >常见疾病</a></li>
+                <li><a href="#" >科室咨询</a></li>
+                <li><a href="/yuyue" >预约查询</a></li>
+                <li><a href="/myself" >个人信息</a></li>
+            </ul>
+            <!-- 登录注册 -->
+            <div>
+                <a href="#" id="register">注册</a>
+                <a href="#" id="login">登录</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- 主体 -->
+    <main>
+        <div>
+            <!-- 侧边疾病分类 -->
+            <div class="disease-menu-left">
+                <ul class="disease-menu-list">
+                    
+                </ul>
+            </div>
+        </div>
+        <!-- 清除上方元素的浮动 添加距离 -->
+        <div class="clear"></div>
+    </main>
+    <!-- 底部 -->
+    <footer></footer>
+
+<script>
+        $.ajax({
+        async: false,
+        url:'http://127.0.0.1:8000/diseases',
+        type:'get',
+        dataType:'json',
+        success:function(data){
+        var html=''
+        $.each(data,function(i,o){
+            var disease=''
+            disease+='<li class="sub"><a href="#" class="color-999 ">'
+            disease+=`<span>${o.dname}</span>`
+            disease+='<i class="verflag"></i><i class="cusfont cusfont-more"></i></a><div class="item"  style="z-index: 1;display: none"><div class="dept-list">'
+            disease+='<div class="d-l"><ul class="diseases-info">'
+
+            $.each(o.dis_name,function(j,dn){
+                disease+=`<li><a href="doctorsInfo/${o.id}" target="_blank" class="color-999">${dn[0]}</a>`
+                disease+='<i class="verflag"></i></li>';
+            })
+            disease+='</ul></div></div></div></li>';
+           html+=disease
+        })
+        $('.disease-menu-list').append(html);
+
+        }
+
+
+    })
+
+    $('.sub').bind("click",function(){
+        $(this).attr("class","sub on");
+        $(this).find("div").css("display","block");
+        $('.item').css("z-index",1);
+        $(this).find("div").css("z-index",5);
+   })
+
+</script>
+
+
+</body>
+
+</html>

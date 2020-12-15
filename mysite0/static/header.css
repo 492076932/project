@@ -1,0 +1,145 @@
+*{margin:0;padding:0}
+a{text-decoration:none;}
+ol,dt,dd,dl,li,ul{list-style:none;}
+img{display:block;border:none;}
+input,button{border:none;outline:none;}
+select{outline: none;}
+p,div,ul,li,dl,dt,dd,ol,h1,h2,h3,h4,h5,h6,form{margin:0;padding:0;}
+.clear{clear:both;}
+.header{
+    width:100%;
+    height:30px;
+    line-height:30px;
+    font-size:12px;
+    color:#666;
+    background:#f7f7f7;
+}
+.head{
+    width:1200px;
+    margin:0 auto;
+    height:30px;
+}
+.headLeft{
+    width:630px;
+    height:30px;
+    float:left;
+}
+.headRight{
+    width:530px;
+    height:30px;
+    float:right;
+}
+.headLeft li,.headRight li{
+    float:left;
+}
+.headLeft li:first-child{
+    margin-right:40px;
+}
+.headRight li{
+    padding:0 4px;
+}
+.headRight li a,.headLeft li a{
+    color:#666;
+}
+.headRight li a:hover,.headLeft li a:hover{
+    color:#ffc000;
+}
+.adTop{
+    width:1200px;
+    height:87px;
+    margin:0 auto;
+}
+.hosLNP{
+    width:1200px;
+    height:112px;
+    line-height: 112px;
+    margin:0 auto;
+    clear:both;
+}
+.hosLNP li{
+    float:left;
+    height:112px;
+    overflow:Hidden;
+}
+.hosLogo a{
+    width:220px;
+    height:112px;
+    display:table-cell;
+    vertical-align:middle;
+}
+.hosName{
+    width:720px;
+}
+.hosName h1{
+    color:#00486c;
+    font-size:28px;
+}
+.hosHotLine{
+    color:#1b8f8e;
+    text-align: right;
+    width:260px;
+    font-size:18px;
+    font-weight:bold;
+    background:url("../hs-images/bg-05.jpg") no-repeat 3px center;
+}
+.footer{
+    width:100%;
+    height:130px;
+    background:#333;
+    font-size:14px;
+    color:#e5e5e5;
+    padding-top:20px;
+    margin-top:60px;
+}
+.web-link{
+    width:1200px;
+    line-height: 30px;
+    margin:0 auto;
+    text-align: center;
+}
+.web-link a{
+    color:#E5E5E5;
+    display: inline-block;
+    padding:0 16px;
+}
+.contact-us{
+    width:1200px;
+    line-height:28px;
+    color:#999;
+    text-align: center;
+    margin:6px auto 0;
+}
+.contact-us a{
+    color:#999;
+    display: inline-block;
+    padding:0 4px;
+}
+
+.pagination{
+    width:100%;
+    height:80px;
+    line-height:80px;
+    text-align: center;
+    margin-top:18px;
+    clear:both;
+}
+.pagination a{
+    display: inline-block;
+    color:#666;
+    width:20px;
+    height:24px;
+    line-height: 24px;
+    border:1px solid #d5d5d5;
+    margin:0 5px;
+}
+.pagination .prevPage,.pagination .nextPage{
+    border:1px solid #d5d5d5;
+    width:66px;
+    height:24px;
+    line-height: 24px;
+
+}
+.pagination .currentPage{
+    border:1px solid #007d67;
+    color:#007d67;
+}

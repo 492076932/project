@@ -1,0 +1,225 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <meta charset="UTF-8">
+  <title>预约信息列表</title>
+  <!--引入外部文件  -->
+  <link rel="stylesheet" href="../static/css/yuyue.css">
+  <link rel="stylesheet" href="/static/css/index.css">
+  <script src="/static/js/jquery.min.js" type="text/javascript"></script>
+
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <div class="header-item">
+      <div class="open-site-header">
+        <div class="open-menu-area ">
+          <div class="open-nav-menu">
+            <!-- 左导航栏 -->
+            <ul class="open-nav-main-menu">
+              <!-- 首页 -->
+              <li class="open-menu-item  selected ">
+                <div>
+                  <a class="open-menu-item-text" href="/index">
+                    首页
+                  </a>
+                </div>
+              </li>
+              <!-- 常见疾病 -->
+              <li class="open-menu-item ">
+                <div>
+                  <a class="open-menu-item-text" href="/diseases">
+                    常见疾病
+                  </a>
+                </div>
+              </li>
+              <!-- 科室咨询 -->
+              <li class="open-menu-item ">
+                <div>
+                  <a class="open-menu-item-text" href='http://127.0.0.1:8000/doctorsInfo/1/'>
+                    科室咨询
+                  </a>
+                </div>
+              </li>
+              <!-- 预约咨询 -->
+              <li class="open-menu-item ">
+                <div>
+                  <a class="open-menu-item-text" href="/yuyue">
+                    预约咨询
+                  </a>
+                </div>
+              </li>
+              <!-- 用户个人信息 -->
+              <li class="open-menu-item ">
+                <div>
+                  <a class="open-menu-item-text" href="/myself">
+                    个人信息
+                  </a>
+                </div>
+              </li>
+            <!-- 右导航栏 -->
+            <ul id="open-nav-right-menu" class="open-nav-right-menu">
+              <li class="open-menu-item open-menu-login open-menu-login-border" id="open-menu-login">
+                <div>
+                  <!-- 登录信息 -->
+                  <a id="p1" class="p2" href="#"> </a>
+                </div>
+              </li>
+              <li id="J_joinOpen" class="open-menu-item open-menu-item-free">
+                <a id="p3" class="p4" type="" onclick="off()" href="/login">注册登录</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  <main>
+    <div class="cc">
+      <div class="adc" id="name1"></div>
+      <div class="abc" id="dname1"></div>
+    </div>
+    <h2>医生排班</h2>
+    <table>
+      <tr>
+        <th>日期</th>
+        <th id="day1"></th>
+        <th id="day2"></th>
+        <th id="day3"></th>
+        <th id="day4"></th>
+        <th id="day5"></th>
+        <th id="day6"></th>
+        <th id="day7"></th>
+      </tr>
+      <tr>
+        <th></th>
+        <th> <a id="a1" href="" target="_blank"></a> </th>
+        <th> <a id="a2" href="" target="_blank"></a> </th>
+        <th> <a id="a3" href="" target="_blank"></a> </th>
+        <th> <a id="a4" href="" target="_blank"></a> </th>
+        <th> <a id="a5" href="" target="_blank"></a> </th>
+        <th> <a id="a6" href="" target="_blank"></a> </th>
+        <th> <a id="a7" href="" target="_blank"></a> </th>
+      </tr>
+
+    </table>
+  </main>
+  <footer>
+    <div>
+      Design by
+      <a href="#">关于我们</a>
+      <a href="#">帮助中心</a>
+      <a href="#">意见反馈</a>
+      <a href="#">黄牛举报</a>
+      <a href="#">医院加盟</a>
+      <a href="#">账号申述</a>
+      <a href="#">网站地图</a>
+
+    </div>
+  </footer>
+</body>
+<!-- 登录注册注销功能 -->
+<script>
+  // 从本地存储取token
+  token = window.localStorage.getItem('dnblog_token');
+  // 从本地存储取登陆的用户名
+  username = window.localStorage.getItem('dnblog_user');
+  $.ajax({
+    type: "get",
+    url: "http://127.0.0.1:8000/v1/users/" + username,
+    beforeSend: function (request) {
+      request.setRequestHeader("Authorization", token);
+    },
+    success: function (result) {
+      if (200 == result.code) {
+        var nickname = result.data.nickname
+        if (token != undefined) {
+          $('.p2').html(nickname + ' ,已登录');
+          $('.p4').html('注销');
+          $('.p4').attr('href', "#");
+          $('.p4').attr('type', "button");
+        }
+      }
+    }
+  })
+
+  function off() {
+    if (token != undefined) {
+      alert('你确定要注销吗?');
+      localStorage.clear()
+      $('.p4').attr('href', "/index");
+    }
+  }
+</script>
+<script charset="utf-8">
+  username = window.localStorage.getItem('dnblog_user')
+  // var id={"id":1};
+  $(function () {
+    $.ajax({
+      url: 'http://127.0.0.1:8000/yuyue/home',
+      type: 'get',
+      //data: id,
+      success: function (result) {
+        if (200 == result.code) {
+          $('#name1').html(result.data.name);
+          $('#dname1').html(result.data.dname);
+          $('#day1').html(result.data.day_0 + result.data.week_0);
+          $('#day2').html(result.data.day_1 + result.data.week_1);
+          $('#day3').html(result.data.day_2 + result.data.week_2);
+          $('#day4').html(result.data.day_3 + result.data.week_3);
+          $('#day5').html(result.data.day_4 + result.data.week_4);
+          $('#day6').html(result.data.day_5 + result.data.week_5);
+          $('#day7').html(result.data.day_6 + result.data.week_6);
+          if (undefined != result.data.wday_0) {
+            $('#a1').html('预约');
+          };
+          if (undefined != result.data.wday_1) {
+            $('#a2').html('预约');
+          };
+          if (undefined != result.data.wday_2) {
+            $('#a3').html('预约');
+          };
+          if (undefined != result.data.wday_3) {
+            $('#a4').html('预约');
+          };
+          if (undefined != result.data.wday_4) {
+            $('#a5').html('预约');
+          };
+          if (undefined != result.data.wday_5) {
+            $('#a6').html('预约');
+          };
+          if (undefined != result.data.wday_6) {
+            $('#a7').html('预约');
+          };
+          if (username != undefined) {
+            var url1 = "http://127.0.0.1:8000/yuyue/yuyue" + '?d=1&u=' + username;
+            $("#a1").attr("href", url1 + '&day=1');
+            $("#a2").attr("href", url1 + '&day=2');
+            $("#a3").attr("href", url1 + '&day=3');
+            $("#a4").attr("href", url1 + '&day=4');
+            $("#a5").attr("href", url1 + '&day=5');
+            $("#a6").attr("href", url1 + '&day=6');
+            $("#a7").attr("href", url1 + '&day=7');
+          } else {
+            var url2 = "http://127.0.0.1:5000/login";
+            $("#a1").attr("href", url2);
+            $("#a2").attr("href", url2);
+            $("#a3").attr("href", url2);
+            $("#a4").attr("href", url2);
+            $("#a5").attr("href", url2);
+            $("#a6").attr("href", url2);
+            $("#a7").attr("href", url2);
+          };
+
+        }
+      }
+    });
+  }
+  )
+</script>
+
+</html>

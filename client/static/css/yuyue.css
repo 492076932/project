@@ -1,0 +1,74 @@
+/* 初始化页面元素样式 */
+h1,h2,h3,p,body,ul,ol,li{
+    margin: 0;
+    padding: 0;
+}
+ul,ol,li{
+    /* 清除列表默认样式(小圆点) */
+    list-style: none;
+}
+a{
+    /* 去掉下划线 */
+    text-decoration: none;
+}
+img{
+    display: block;
+}
+body{
+    /* font-size: 16px;
+    font-family: 'Courier New', Courier, monospace */
+    font:16px 'Courier New';
+}
+
+
+/* ****************main************************************** */
+main{
+    /* border: 5px solid red; */
+    width: 80%;
+    margin: 100px auto 0;
+    overflow: hidden;
+}
+table{
+    border-spacing: 30px 20px; 
+}
+.amg{
+    width: 300px;
+    height: 300px;
+}
+.cc{
+    position:absolute;
+    display: block;
+    float: left;
+    margin-left:30%;
+    top:30%;
+    size: 30px;
+}
+h2{
+    display: inline-block ;
+    padding: 0 500px 0 0;
+}
+
+/* ****************footer******************************** */
+footer{
+    width: 100%;
+    background-color: #555;
+    color:#a5a4a4;
+    text-align: center;
+    padding: 20px 0;
+    position: fixed;
+    top: 600px;
+    z-index: 999;
+}
+footer a{
+    color: #a5a4a4;
+}
+footer a:hover{
+    color: #c1edf2;
+}
+
+
+
+
+
+
+

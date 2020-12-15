@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <title>AID2007-AGO医院项目</title>
+  <link rel="stylesheet" href="/static/css/index.css">
+  <script src="/static/js/jquery.min.js"></script>
+</head>
+
+<body>
+    <!-- 导航栏 -->
+    <div class="header-item">
+      <div class="open-site-header">
+        <div class="open-menu-area ">
+          <div class="open-nav-menu">
+            <!-- 左导航栏 -->
+            <ul class="open-nav-main-menu">
+              <!-- 首页 -->
+              <li class="open-menu-item  selected ">
+                <div>
+                  <a class="open-menu-item-text" href="/index">
+                    首页
+                  </a>
+                </div>
+              </li>
+              <!-- 常见疾病 -->
+              <li class="open-menu-item ">
+                <div>
+                  <a class="open-menu-item-text" href="/diseases">
+                    常见疾病
+                  </a>
+                </div>
+              </li>
+              <!-- 科室咨询 -->
+              <li class="open-menu-item ">
+                <div>
+                  <a class="open-menu-item-text" href='http://127.0.0.1:8000/doctorsInfo/1/'>
+                    科室咨询
+                  </a>
+                </div>
+              </li>
+              <!-- 预约咨询 -->
+              <li class="open-menu-item ">
+                <div>
+                  <a class="open-menu-item-text" href="/yuyue">
+                    预约咨询
+                  </a>
+                </div>
+              </li>
+              <!-- 用户个人信息 -->
+              <li class="open-menu-item ">
+                <div>
+                  <a class="open-menu-item-text" href="/myself">
+                    个人信息
+                  </a>
+                </div>
+              </li>
+            <!-- 右导航栏 -->
+            <ul id="open-nav-right-menu" class="open-nav-right-menu">
+              <li class="open-menu-item open-menu-login open-menu-login-border" id="open-menu-login">
+                <div>
+                  <!-- 登录信息 -->
+                  <a id="p1" class="p2" href="#"> </a>
+                </div>
+              </li>
+              <li id="J_joinOpen" class="open-menu-item open-menu-item-free">
+                <a id="p3" class="p4" type="" onclick="off()" href="/login">注册登录</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <h1>医院挂号服务平台</h1>
+  <br>
+  <div class="process-wrapper">
+    <div id="progress-bar-container">
+      <ul>
+        <li class="step step01 active">
+          <div class="step-inner">1.判断疾病</div>
+        </li>
+        <li class="step step02">
+          <div class="step-inner">2.选择科室咨询</div>
+        </li>
+        <li class="step step03">
+          <div class="step-inner">3.查询医生是否有号</div>
+        </li>
+        <li class="step step04">
+          <div class="step-inner">4.确定预约时间</div>
+        </li>
+        <li class="step step05">
+          <div class="step-inner">5.预约成功待取号</div>
+        </li>
+      </ul>
+
+      <div id="line">
+        <div id="line-progress"></div>
+      </div>
+    </div>
+
+    <div id="progress-content-section">
+      <div class="section-content discovery active">
+        <h2>判断疾病</h2>
+        <p>如果疾病为常见类型,可选择常见疾病直接进入科室进行预约</p>
+      </div>
+
+      <div class="section-content strategy">
+        <h2>选择科室咨询</h2>
+        <p>判断您要预约挂号的科室</p>
+      </div>
+
+      <div class="section-content creative">
+        <h2>查询医生是否有号</h2>
+        <p>选择科室后,选择一名医生查看相关信息,查询是否有号</p>
+      </div>
+
+      <div class="section-content production">
+        <h2>确定预约时间</h2>
+        <p>在该医生有号的时间段,根据您自身时间安排选择日期预约</p>
+      </div>
+
+      <div class="section-content analysis">
+        <h2>预约成功待取号</h2>
+        <p>预约成功后,当天记得医院取号就诊\(^o^)/~</p>
+      </div>
+    </div>
+  </div>
+</body>
+
+<!-- 登录注册注销功能 -->
+<script>
+  // 从本地存储取token
+  token = window.localStorage.getItem('dnblog_token');
+  // 从本地存储取登陆的用户名
+  username = window.localStorage.getItem('dnblog_user');
+  $.ajax({
+    type: "get",
+    url: "http://127.0.0.1:8000/v1/users/" + username,
+    beforeSend: function (request) {
+      request.setRequestHeader("Authorization", token);
+    },
+    success: function (result) {
+      if (200 == result.code) {
+        var nickname = result.data.nickname
+        if (token != undefined) {
+          $('.p2').html(nickname + ' ,已登录');
+          $('.p4').html('注销');
+          $('.p4').attr('href', "#");
+          $('.p4').attr('type', "button");
+        }
+      }
+    }
+  })
+
+  function off() {
+    if (token != undefined) {
+      alert('你确定要注销吗?');
+      localStorage.clear()
+      $('.p4').attr('href', "/index");
+    }
+  }
+</script>
+
+<!-- 滚动进度条 -->
+<script src="/static/js/rollstep.js"></script>
+
+</html>

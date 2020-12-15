@@ -1,0 +1,287 @@
+.search-box{
+    width:498px;
+    height:38px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    margin:22px 0 12px 0;
+    background:#ccc;
+    font-size:14px;
+    color:#999;
+}
+.search-box .search-text{
+    width:438px;
+    height:38px;
+    line-height: 38px;
+    background: #fff;
+    border-radius:8px 0 0 8px;
+    text-indent:1em;
+    color:#999;
+    float:left;
+}
+.search-box .search-btn{
+    width:60px;
+    height:38px;
+    float:left;
+    background:url("../hs-images/search.png") no-repeat center center;
+    cursor: pointer;
+}
+.search-btn:hover{
+        background: #f0fffc;
+}
+
+table tr td { border:1px solid #cccccc;color:#666;font-size:14px;}
+table { width: 892px; text-align: center; border-collapse: collapse; padding:2px;font-size:14px;}
+.doc-list-tit{
+    width:890px;
+    height:42px;
+    background: #1a938e;
+    border:1px solid #ccc;
+}
+.doc-list-tit td{
+    width:159px;
+    height:42px;
+    line-height:42px;
+    color:#fff;
+    font-size:18px;
+    text-align:center;
+}
+.doc-list-tit .lastLi,.doc-list-info .lastLi{
+    width:410px;
+}
+.doc-list-info{
+    width:890px;
+    overflow:Hidden;
+    height:auto;
+    border:1px solid #ccc;
+    border-top:0;
+    text-align:center;
+    color:#666;
+    /*cursor:pointer;*/
+}
+.doc-list-info:hover{
+    background:#f0fffc;
+}
+.doc-list-info td{
+    width:159px;
+    color:#666;
+    line-height:24px;
+    padding:10px;
+    font-size:14px;
+}
+.doc-list-info td a{color:#666;}
+
+/*专家详情*/
+.doc-introduction{
+    margin:40px 0;
+    overflow:hidden;
+}
+.doc-idn-l,.doc-idn-r{
+    float:left;
+}
+.doc-idn-l{
+    margin-right:34px;
+    width:286px;
+    height:371px;
+}
+.doc-idn-l li{
+    width:294px;
+    height:371px;
+    margin-right:8px;
+}
+.doc-idn-l li:hover{
+    /*background:url("../hs-images/bg-07.jpg") no-repeat;*/
+}
+.work-date{
+    margin-bottom:40px;
+}
+.item-doc{
+    width:286px;
+    height:347px;
+    padding-top:17px;
+    margin:4px 3px;
+    background:#f0f0f0;
+    position:relative;
+}
+.head-portrait{
+    width:131px;
+    height:131px;
+    overflow:hidden;
+    margin:0 auto 6px;
+    position:relative;
+}
+.doc-img{
+    width:100%;
+    height:100%;
+    display: block;
+}
+.img-border{
+    display: block;
+    width:131px;
+    height:131px;
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:1;
+}
+.doc-name-titles{
+    height:45px;
+    line-height:45px;
+    color:#007d67;
+    font-size:20px;
+    text-align: center;
+    font-weight:bold;
+}
+.doc-goodAt{
+    width:246px;
+    margin:4px auto;
+    height:190px;
+    overflow:hidden;
+    font-size:15px;
+    color:#666;
+    line-height:26px;
+}
+.doc-inHos{
+    width:100%;
+    height:100px;
+    background:#007d67;
+    font-size:14px;
+    color:#fff;
+    padding-top:4px;
+}
+.doc-inHos p,.doc-inHos div{
+    width:240px;
+    margin:6px auto 3px;
+    line-height:40px;
+    font-size:16px;
+}
+.doc-inHos div{
+    margin-top:0px;
+    margin-bottom:0px;
+}
+.doc-inHos div .sp1{
+    float:left;
+}
+.doc-inHos div .sp2{
+    float:right;
+}
+.patient-order{
+    width:62px;
+    overflow:hidden;
+    position:absolute;
+    top:0px;
+    left:0px;
+}
+.patient-order a{
+    display: block;
+    width:60px;
+    height:22px;
+    border:1px solid #fdc724;
+    line-height:22px;
+    color:#666;
+    margin-bottom:3px;
+    font-size:14px;
+    text-align: center;
+    background:#fff;
+}
+.patient-order a:hover{
+    background:#fdc724;
+    color:#007d67;
+}
+.doc-idn-r{
+    width:560px;
+    overflow:hidden;
+}
+.doc-idn-r h3{
+    color:#007d67;
+    font-weight:normal;
+    font-size:16px;
+    height:40px;
+}
+.doc-idn-r div{
+    font-size:14px;
+    color:#666;
+    /*text-indent:2em;*/
+    line-height:32px;
+}
+/*table tr td { border:1px solid #cccccc; }*/
+/*table { width: 884px; height: 108px; text-align: center; border-collapse: collapse; padding:2px;font-size:14px;}*/
+.week td{
+    background:#007d67;
+    width:110px;
+    color:#fff;
+    height:46px;
+}
+.order-date-am td,.order-date-pm td{
+    width:110px;
+    height:32px;
+    background:#fff;
+}
+.order-date-am .tdCurrent,.order-date-pm .tdCurrent{
+    background:#f0f0f0;
+}
+.tdCurrent:hover{
+    background:#f0fffc;
+}
+.color-333{
+    color:#333;
+}
+.color-666{
+    color:#666;
+}
+.color-999{
+    color:#999;
+}
+.table-order-info{
+    width:890px;
+    height:124px;
+    border:1px solid #ccc;
+    border-top:0;
+}
+.doc-name{
+    color:#ffc000;
+    font-size:16px;
+    height:40px;
+    line-height:40px;
+    text-indent:1.6em;
+}
+.doc-better,.order-cost{
+    margin:0 26px;
+    line-height:24px;
+    font-size:14px;
+    overflow: hidden;
+}
+.doc-better .p1,.order-cost .p1{
+    width:70px;
+    float:left;
+    clear:both;
+}
+.order-cost .p1{
+    width:136px;
+}
+.doc-better .p2,.order-cost .p2{
+    width:758px;
+    float:left;
+}
+.order-cost .p2{
+    width:692px;
+    text-align:right;
+}
+.order-cost .p2 a{
+    color:#007d67;
+    padding:0 20px;
+}
+.order-cost .p2 a:hover{
+    text-decoration:underline;
+}
+.other-doc{
+    width:180px;
+    height:36px;
+    background:#e6e6e6;
+    color:#007d67;
+    font-size:16px;
+    line-height:36px;
+    text-align:center;
+    font-weight:bold;
+    margin-bottom:10px;
+    margin-top:20px;
+}

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>
+    <title>用户注册</title>
+    <style>
+        html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, img, dd, dt, dl, i, em {
+            padding: 0;
+            margin: 0;
+            border: none;
+            font-style: normal;
+        }
+        html{
+            background: #f4f4f4;
+
+        }
+        .t1{
+            width: 100%;
+            height: 100px;
+            /* 固定地位 */
+            position: fixed;
+            background: #ffffff
+        }
+        .logo{
+            float: left;
+            margin: 20px 450px;
+            /* 固定地位 */
+            position: fixed;
+        }
+        .logo_span{
+            width: 80%;
+            padding-left:10px; 
+            color: #999999;
+            font-size: 23px;
+            position: absolute;
+            margin-top:20px;
+        }
+        a{
+            /* 去除下划线 */
+            text-decoration: none
+        }
+        .enter_span {
+            vertical-align: middle;
+            color: #666666;
+            font-size: 14px;
+            height: 14px;
+            line-height: 14px;
+        }
+        .enter_btn {
+            vertical-align: middle;
+            line-height: 34px;
+            border: none;
+            color: #fff;
+            font-size: 26px;
+            background-color: #22ac38;
+            margin-left: 12px;
+            border-radius: 3px;
+        }
+        .enter{
+            float: right;
+            margin-right: 580px;
+            margin-top: 32px;
+        }
+        .t2{
+            width: 50%;
+            height: 500px;
+            background: #ffffff;
+            float: left;
+            margin-left: 25%;
+            margin-top: 120px;
+        }
+        .t2_1{
+            float: left;
+            margin-top:150px; 
+            margin-left:65px;
+            font-size: 32px; 
+            color: #999999;
+        }
+        .username{
+            padding-right: 7px;
+        }
+        .phone{
+            padding-right: 7px;
+        }
+        .password{
+            margin-top: 24px;
+            margin-left:-112px;
+            padding-right: 7px;
+        }
+        .z{
+            float: left;
+            margin-left: 45px;
+            margin-top: 25px;
+        }
+        #z{
+            color: black;
+            float: left;
+            margin-left: -230px;
+            margin-top: -360px;
+        }
+        #a{
+            /* 改为块元素 */
+            display: block;
+            width: 160px;
+            color: black;
+            font-size: 20px;
+            float: left;
+            margin-left: -177px;
+            margin-top: -255px;
+        }
+        .tupian{
+            float: left;
+            margin: -400px 340px;
+        }
+        #sms{
+            width:135px;
+            height:36px;
+            margin-left:116px;
+        }
+        .sms_num{
+            width:95px;
+            height:25px;
+            float: left;
+            margin-top:-36px;
+        }
+    </style>
+</head>
+<body>
+    <div class="t1">
+        <div>
+            <div class="logo">
+                <a href="#"></a>
+                <img src="https://static.91160.com/usercenter/user/images/nav.png" alt="logo nav">
+                <span class="logo_span">用户注册</span>
+            </div>
+            <div class="enter">
+                <span class="enter_span">我已注册，现在就</span>
+                <a class="enter_btn bo_ras gradual" href='http://127.0.0.1:5000/login'>登录</a>
+            </div>
+        </div>
+    </div>
+    <div class="t2">
+        <div class="t2_1">
+            <form method="post" action="/user/reg">
+                <p style="height:60px">
+                    <input class="username" style="width:230px;height:25px" type="text" placeholder="请输入您的姓名" name="username">
+                </p>
+                 <p style="height:60px">
+                    <input class="phone" style="width:230px;height:25px" type="text" placeholder="请输入您的手机号" maxlength="11" name="phone">
+                </p>
+                <p>
+                    <input type="button" id="sms" onclick="settime(this);sendSMS()" value="免费获取验证码">
+                </p>
+                <p>
+                    <input type="text" class="sms_num" name="sms_num" placeholder="请输入验证码" required />
+                </p>
+                <p style="height:60px">
+                    <input class="password" style="width:230px;height:25px" type="password" placeholder="请输入您的密码" name="password">
+                </p>
+                <p style="height:100px" class="z">
+                    <input type="button" onclick="register()" value="注册" style="width:130px;height:40px;font-family:'宋体'">
+                </p>
+            </form>
+            <span id='z'>注册账号</span>
+            <p id='a'>填写以下账号信息</p>
+            <div class="tupian">
+                <img src="https://static.91160.com/usercenter/v3/style/regis/regrgtimg.gif">
+            </div>
+        </div>
+           
+    </div>
+</body>
+<script>
+    function getQueryVariable(variable)
+       {
+           var query = window.location.search.substring(1);
+           var vars = query.split("&");
+           for (var i=0;i<vars.length;i++) {
+              var pair = vars[i].split("=");
+              if(pair[0] == variable){return pair[1];}
+           }
+           return null;
+       }
+    var countdown=60;
+	function settime(obj) {
+	    var phone = $('.phone').val();
+	    if (!(/^1[3456789]\d{9}$/.test(phone))){
+            alert("手机号有误！");
+            return false;
+        } else if (countdown == 0) {
+        	obj.removeAttribute("disabled");
+        	obj.value="免费获取验证码";
+			countdown = 60;
+        	return;
+    	} else {
+        	obj.setAttribute("disabled", true);
+        	obj.value="重新发送(" + countdown + ")";
+        	countdown--;
+    	}
+		setTimeout(function() {
+    		settime(obj) }
+    	,1000)
+	}
+    function register(){
+		var username = $('.username').val();
+		var phone = $('.phone').val();
+		var sms_num = $('.sms_num').val();
+		var password = $('.password').val();
+		var post_data = {"username":username,"password":password,"phone":phone,"sms_num":sms_num}
+		//console.log(post_data);
+		$.ajax({
+			url:'http://127.0.0.1:8000/v1/users',
+			type:'post',
+			//响应的数据格式
+			dataType:'json',
+			//提交的请求数据
+			data:JSON.stringify(post_data),
+			//请求的数据格式
+			contentType:'application/json',
+			success:function(res){
+				if(res.code == 200){
+					alert('注册成功');
+					window.location = '/login'
+				}else if(res.code == 10201){
+					alert('验证码错误')
+				}else{
+				    alert('注册失败')
+				}
+			}
+
+		});
+	}
+	function sendSMS(){
+		// 1 获取用户输入手机号
+		var phone = $('.phone').val();
+		// 2封装为json对象
+		var post_data = {"phone":phone};
+		// 3发送ajax异步请求
+		$.ajax({
+			url:'http://127.0.0.1:8000/user/sms',
+			type:'post',
+			//async: false,
+			data:JSON.stringify(post_data),
+			contentType:'application/json',
+			dataType:'json',
+			success:function(res){
+				if(res.code ==200){
+					alert('短信已发送')
+				}else{
+					alert(res.error);
+				}
+			}
+		});
+	}
+</script>
+
+</html>

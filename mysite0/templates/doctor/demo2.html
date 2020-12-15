@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>医生个人信息</title>
+    <link type="text/css" rel="stylesheet" href="../../static/header.css" />
+    <link type="text/css" rel="stylesheet" href="../../static/nav.css" />
+    <link type="text/css" rel="stylesheet" href="../../static/doctor.css" />
+        <link rel="stylesheet" href="../../static/yuyue.css">
+    <script src="../../static/js/jquery.min.js" type="text/javascript"></script>
+</head>
+<body>
+    <header>
+      <div class="header-item">
+        <div class="open-site-header">
+          <div data-aspm="c-menu-area" data-aspm-expo class="open-menu-area ">
+            <div class="open-nav-menu">
+              <ul class="open-nav-main-menu">
+
+                <li data-value="solve" class="open-menu-item  selected ">
+                  <div>
+                    <a data-aspm-click="d-nav-leftmenu2-click" data-aspm-expo class="open-menu-item-text"
+                      rel="noopener noreferrer" href="http://127.0.0.1:5000/index">
+                      首页
+                    </a>
+                  </div>
+                </li>
+
+                <li data-value="delopAccess" class="open-menu-item ">
+                  <div>
+                    <a data-aspm-click="d-nav-leftmenu3-click" data-aspm-expo class="open-menu-item-text" target="_blank"
+                      rel="noopener noreferrer" href="http://127.0.0.1:5000/diseases">
+                      常见疾病
+                    </a>
+                  </div>
+                </li>
+
+                <li data-value="serviceMarket" class="open-menu-item ">
+                  <div>
+                    <a data-aspm-click="d-nav-leftmenu4-click" data-aspm-expo class="open-menu-item-text" target="_blank"
+                      rel="noopener noreferrer" href="http://127.0.0.1:8000/doctorsInfo/1">
+                      科室咨询
+                    </a>
+                  </div>
+                </li>
+
+                <li data-value="docCenter" class="open-menu-item ">
+                  <div>
+                    <a data-aspm-click="d-nav-leftmenu5-click" data-aspm-expo class="open-menu-item-text"
+                      rel="noopener noreferrer" href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}">
+                      预约咨询
+                    </a>
+                  </div>
+                </li>
+
+                <li data-value="none" class="open-menu-item ">
+                  <div>
+                    <a data-aspm-click="d-nav-leftmenu6-click" data-aspm-expo class="open-menu-item-text" target="_blank"
+                      rel="noopener noreferrer" href="http://127.0.0.1:5000/myself">
+                      个人信息
+                    </a>
+                  </div>
+                </li>
+
+                <li data-value="none" class="open-menu-item ">
+                  <div class="open-fn-arrow has-submenu">
+                    <a data-aspm-click="d-nav-leftmenu7-click" data-aspm-expo class="open-menu-item-text"
+                      rel="noopener noreferrer" href="http://127.0.0.1:5000/update_schedule">
+                      医生管理系统
+                    </a>
+
+                    <!-- 医生管理系统菜单 -->
+                    <div class="menu-popup">
+                      <ul class="open-submenu">
+                        <li data-aspm-expo data-aspm="c-submenuitem71" data-value="none" class="open-submenu-item ">
+                          <div>
+                            <a target="_blank" href="http://127.0.0.1:5000/update_schedule" data-aspm-click="d-submenuitem71">排班管理</a>
+                          </div>
+                        </li>
+                        <li data-aspm-expo data-aspm="c-submenuitem72" data-value="coopestrategy"
+                          class="open-submenu-item ">
+                          <div>
+                            <a target="_blank" href="http://127.0.0.1:5000/update_doc" data-aspm-click="d-submenuitem72">更新医生信息</a>
+                          </div>
+                        </li>
+                        <li data-aspm-expo data-aspm="c-submenuitem72" data-value="coopestrategy"
+                          class="open-submenu-item ">
+                          <div>
+                            <a target="_blank" href="http://127.0.0.1:5000/all_doc" data-aspm-click="d-submenuitem72">查看医生信息</a>
+                          </div>
+                        </li>
+                      </ul>
+                    </div>
+
+                  </div>
+                </li>
+
+              </ul>
+              <ul id="open-nav-right-menu" class="open-nav-right-menu">
+
+
+                <li class="open-menu-item open-menu-login open-menu-login-border" id="open-menu-login">
+                  <div>
+                    <a id="p1" class="p2" data-aspm-click="d-nav-loginbtn-click" data-aspm-expo href="#">
+                    </a>
+                  </div>
+                </li>
+                <li id="J_joinOpen" class="open-menu-item open-menu-item-free">
+                  <a id="p3" class="p4" type="" onclick="off()" href="http://127.0.0.1:5000/login">注册登录</a>
+                </li>
+                　
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+        <div class="content">
+            <div class="doc-introduction">
+                <ul class="doc-idn-l">
+                    <li>
+                        <div class="item-doc">
+<!--                            <div class="head-portrait">-->
+<!--                                <img src="http://image.999120.net/doctor/20495089.jpg" class="doc-img" />-->
+<!--                                <img src="bg-06.png" class="img-border" />-->
+<!--                            </div>-->
+                            <div class="doc-name-titles">{{ doctor.doctorname }}&nbsp;&nbsp;{{ doctor.title }}</div>
+                            <div class="doc-goodAt">
+<!--                                擅长治疗：显微镜手术(精索静脉结扎、输精管附睾吻合、输精管吻合、阴茎背神经矫形术)；生殖整形（阴茎畸形矫正延长、阴茎增粗）等各种男科手术以及男性性功能障碍、男性不育症、前列腺疾病的诊治。-->
+                            </div>
+                            <div class="doc-inHos">
+                                <p>  深圳**医院  &nbsp;   {{ dept.dname }}  </p>
+                                <div><span class="sp1">挂号费用：25.00</span><span class="sp2">网上挂号：是</span></div>
+                            </div>
+                            <div class="patient-order">
+                                <a href="http://127.0.0.1:8000/home/{{ doctor.id }}" >预约</a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <div class="doc-idn-r">
+                    <h3>医生简介</h3>
+                    <div class="doc-idn-txt">
+                        <div>
+                        {{ doctor.d_space }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+             <ul class="order-list">
+
+
+
+<!-- <li>-->
+<!--                        <table class="table-order-date">-->
+
+<!--                            <tbody>-->
+<!--                            <tr class="week">-->
+<!--                                <td>出诊<br />日期</td>-->
+
+<!--                                <td>11月8日<br>星期日</td>-->
+
+<!--                                <td>11月9日<br>星期一</td>-->
+
+<!--                                <td>11月10日<br>星期二</td>-->
+
+<!--                                <td>11月11日<br>星期三</td>-->
+
+<!--                                <td>11月12日<br>星期四</td>-->
+
+<!--                                <td>11月13日<br>星期五</td>-->
+
+<!--                                <td>11月14日<br>星期六</td>-->
+
+<!--                            </tr>-->
+
+
+
+<!--                            <tr class="order-date-am">-->
+<!--                                <td class="tdCurrent color-333">上午</td>-->
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/{{ doctor.id }}/" target=_self class="color-666"> 预约</a></TD>-->
+
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}" target=_self class="color-666"> 预约</a></TD>-->
+
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}" target=_self class="color-666"> 预约</a></TD>-->
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}" target=_self class="color-666"> 预约</a></TD>-->
+
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}" target=_self class="color-666"> 预约</a></TD>-->
+
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}" target=_self class="color-666"> 预约</a></TD>-->
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}" target=_self class="color-666"> 预约</a></TD>-->
+
+
+
+
+<!--                            </tr>-->
+<!--                           <tr class="order-date-am">-->
+<!--                                <td class="tdCurrent color-333">下午</td>-->
+
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}" target=_self class="color-666"> 预约</a></TD>-->
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}" target=_self class="color-666"> 预约</a></TD>-->
+
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}" target=_self class="color-666"> 预约</a></TD>-->
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}" target=_self class="color-666"> 预约</a></TD>-->
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}" target=_self class="color-666"> 预约</a></TD>-->
+
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}" target=_self class="color-666"> 预约</a></TD>-->
+
+
+<!--					 <td class="tdCurrent"><a href="http://127.0.0.1:5000/yuyue/{{ doctor.id }}" target=_self class="color-666"> 预约</a></TD>-->
+
+
+<!--                            </tr>-->
+<!--                            </tbody>-->
+<!--                        </table>-->
+<!--                    </li>-->
+            </ul>
+        </div>
+</body>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="/static/js/jquery.min.js" type="text/javascript"></script>
+    <title>用户登录</title>
+    <style>
+        div,span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, img, dd, dt, dl, i, em {
+        padding: 0px;
+        margin: 0;
+        border: none;
+        font-style: normal;
+        }
+        .bg_white {
+            background-color: #fff;
+        }
+        div {
+            display: block;
+        }
+        
+        html {
+        -ms-text-size-adjust: 100%;
+        font-size: 14px;
+        color: #333;
+        }
+        .nav {
+            height: 80px;
+            line-height: 80px;
+        }
+        .center {
+            margin: 0 auto;
+        }
+        .w1000 {
+            width: 1000px;
+        }
+        .form{
+            width: 240px;
+            height: 260px;
+            background-color:rgb(243, 243, 242);
+            float: left;
+            z-index: 99;
+            margin-left: 1010px;
+            margin-top: -370px;
+            position:absolute;
+        }
+        .enter_btn {
+        vertical-align: middle;
+        width: 90px;
+        height: 34px;
+        line-height: 34px;
+        border: none;
+        color: #fff;
+        font-size: 28px;
+        background-color: #22ac38;
+        margin-left: 12px;
+        }
+        .bo_ras {
+            /* 倒角 */
+            border-radius: 3px;
+        }
+        .fr {
+            float: right!important;
+        }
+        .fr {
+            float: right;
+        }
+        .enter{
+            margin-top: -80px;
+        }
+        .enter_span {
+        vertical-align: middle;
+        color: #666666;
+        font-size: 14px;
+        height: 14px;
+        line-height: 14px;
+        }
+        button, input, select, textarea {
+        margin: 0;
+        font-size: 100%;
+        outline: none;
+        }
+        .p{
+            z-index: 1;  
+        }
+        /*  */
+        a{
+        /* 去除下划线 */
+            text-decoration: none
+        }
+        .name{
+            padding-right: 7px;
+
+        }
+        .password{
+            padding-right: 7px;
+        }
+        .d{
+            float: left;
+            margin-left: 55px;
+            margin-top: 55px;
+        }
+        .t_1{
+            width: 130PX;
+            height: 50px;
+            float: left;
+            font-size: 20px;
+            line-height: 50px;
+            background-color:#fff;
+            margin-left: 1010px;
+            margin-top: -420PX;
+            position:absolute;
+            border-radius: 8px;
+            
+        }
+        #y{
+            float: left;
+            display: block;
+            margin-left: 24px;
+            color: rgb(12, 12, 11);
+        }
+    </style>
+</head>
+<body>
+    <!-- 头部 -->
+        <div class="bg_white"> 
+            <div class="nav w1000 center">
+                    <div class="logo_enter fl">
+                        <a href="/index">
+                            <img class="logo_img" src="https://static.91160.com/usercenter/user/images/nav_1.png" alt="logo nav">
+                        </a>
+                    </div>
+                    <div class="enter fr">
+                        <span class="enter_span">我还没注册，现在就</span>
+                        <a class="enter_btn bo_ras gradual" href='http://127.0.0.1:5000/register'>注册</a>
+                        <!-- <input class="enter_btn bo_ras gradual" onclick="_hmt.push(['_trackEvent', '登录页-注册', '点击']);location.href='https://user.91160.com/register.html';" type="button" value="注册"> -->
+                    </div>
+            </div>
+        </div>
+        <!-- 体部 -->
+        <div class="p">
+                <img id="bg" src="https://static.91160.com/usercenter/user/images/loginbanner.jpg" />
+        </div>
+        <div class="t_1">
+            <a id='y' href="#">用户登录</a>
+        </div>
+        <div class="form">
+                <form style="height:50px" method="post" action="/user/login">
+                    <p style="height:60px">
+<!--                        <input class="username" type="text" style="width:218px;height:25px" placeholder="请输入您的姓名" name="username">-->
+                        <input class="phone" style="width:218px;height:25px" type="text" placeholder="请输入您的手机号" maxlength="11" name="phone">
+                    </p>
+                    <p style="height:50px">
+                        <input class="password" type="password" style="width:218px;height:25px" placeholder="请输入您的密码" name="password">
+                    </p>
+                    <p>
+<!--                        <input type="checkbox" name="remember">-->
+                    </p>
+                    <p style="height:100px" class="d">
+                        <input type="button" onclick="login()" value="登录" style="width:130px;height:30px;">
+                    </p>
+                </form>
+        </div>
+</body>
+<script>
+		function login(){
+			//var username = $('.username').val();
+			var phone = $('.phone').val();
+			var password = $('.password').val();
+			var post_data = {"phone":phone,"password":password};
+			//console.log(post_data);
+			$.ajax({
+				url:'http://127.0.0.1:8000/v1/tokens',
+				type:'post',
+				dataType:'json',
+				data:JSON.stringify(post_data),
+				contentType:'application/json',
+				success:function(res){
+					if (res.code == 200){
+					    // 将token和username数据保存到浏览器的本地存储
+					    window.localStorage.setItem('dnblog_token',res.data.token);
+					    window.localStorage.setItem('dnblog_user',res.username);
+						window.location = '/index'
+						alert('登录成功');
+					} else if(res.code == 2001){
+					    // 将username数据保存到浏览器的本地存储
+					    // window.localStorage.setItem('dnblog_user',res.username);
+						window.location = '/schedule'
+						alert('登录成功');
+					} else {
+						alert('登录失败');
+                    }
+                }
+			});
+		}
+	</script>
+
+</html>
